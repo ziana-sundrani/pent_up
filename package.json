@@ -1,0 +1,26 @@
+{
+  "name": "pent_up",
+  "version": "1.0.0",
+  "description": "SPARK",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run --prefix ./frontend dev",
+    "build": "npm run --prefix ./frontend build",
+    "start": "npm run --prefix ./frontend start",
+    "lint": "npm run --prefix ./frontend lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ziana-sundrani/pent_up.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ziana-sundrani/pent_up/issues"
+  },
+  "homepage": "https://github.com/ziana-sundrani/pent_up#readme",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

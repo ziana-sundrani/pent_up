@@ -1,0 +1,91 @@
+"use client";
+
+import * as React from "react";
+import { Box, Button, MenuItem, Stack, TextField } from "@mui/material";
+
+const presetColors = [
+	"#ef4444",
+	"#f59e0b",
+	"#10b981",
+	"#3b82f6",
+	"#8b5cf6",
+	"#f43f5e",
+	"#6b7280",
+];
+
+export type MessageInput = {
+	to: string;
+	body: string;
+	color: string;
+};
+
+export function MessageForm({ onSubmitted }: { onSubmitted?: () => void }) {
+	const [form, setForm] = React.useState<MessageInput>({ to: "", body: "", color: presetColors[3] });
+	const [loading, setLoading] = React.useState(false);
+	const [error, setError] = React.useState<string | null>(null);
+
+	async function handleSubmit(e: React.FormEvent) {
+		e.preventDefault();
+		setLoading(true);
+		setError(null);
+		try {
+			const res = await fetch(`/api/messages`, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(form),
+			});
+			if (!res.ok) {
+				const j = await res.json().catch(() => ({}));
+				throw new Error(j.error || `Request failed: ${res.status}`);
+			}
+			setForm({ to: "", body: "", color: presetColors[3] });
+			onSubmitted?.();
+		} catch (err: any) {
+			setError(err.message ?? "Something went wrong");
+		} finally {
+			setLoading(false);
+		}
+	}
+
+	return (
+		<Box component="form" onSubmit={handleSubmit} sx={{ width: "100%" }}>
+			<Stack spacing={2}>
+				<TextField
+					label="To"
+					value={form.to}
+					onChange={(e) => setForm((f) => ({ ...f, to: e.target.value }))}
+					required
+					fullWidth
+				/>
+				<TextField
+					label="Message"
+					value={form.body}
+					onChange={(e) => setForm((f) => ({ ...f, body: e.target.value }))}
+					multiline
+					minRows={3}
+					required
+					fullWidth
+				/>
+				<TextField
+					label="Color"
+					select
+					value={form.color}
+					onChange={(e) => setForm((f) => ({ ...f, color: e.target.value }))}
+				>
+					{presetColors.map((c) => (
+						<MenuItem key={c} value={c}>
+							<Stack direction="row" spacing={1} alignItems="center">
+								<Box sx={{ width: 16, height: 16, borderRadius: "50%", bgcolor: c }} />
+								<span>{c}</span>
+							</Stack>
+						</MenuItem>
+					))}
+				</TextField>
+				<Button type="submit" variant="contained" disabled={loading}>
+					{loading ? "Submitting..." : "Submit"}
+				</Button>
+				{error && <Box sx={{ color: "error.main", fontSize: 14 }}>{error}</Box>}
+			</Stack>
+		</Box>
+	);
+}
