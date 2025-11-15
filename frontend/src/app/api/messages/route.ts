@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
 			} else {
 				const errorText = await moderationResponse.text();
 				console.error("Moderation service error:", moderationResponse.status, errorText);
-				// If moderation service fails, log but don't block (you may want to change this in production)
+				// If moderation service fails, log but don't block
 				console.warn("Moderation service unavailable, proceeding without check");
 			}
 		} catch (error) {
