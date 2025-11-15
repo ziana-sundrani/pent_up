@@ -40,6 +40,7 @@ export async function POST(req: NextRequest) {
 			if (moderationResponse.ok) {
 				const moderationData = await moderationResponse.json();
 				console.log("Moderation result:", moderationData);
+				//if the message is toxic, return early without posting the message 
 				if (moderationData.toxic) {
 					console.log("Message flagged as toxic, blocking...");
 					return NextResponse.json(
