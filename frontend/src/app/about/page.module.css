@@ -1,0 +1,220 @@
+.aboutContainer {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  background-image: url("/assets/about_background/orange_gradient.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.contentWrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 100vh;
+  padding: 40px;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+@media (max-width: 1200px) {
+  .contentWrapper {
+    flex-direction: column;
+    padding: 30px;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .contentWrapper {
+    padding: 20px;
+    gap: 20px;
+  }
+}
+
+.aboutPanel {
+  flex: 0 0 auto;
+  width: 50%;
+  max-width: 600px;
+}
+
+@media (max-width: 1200px) {
+  .aboutPanel {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.aboutCard {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+}
+
+.charactersSection {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 30px;
+  align-content: start;
+}
+
+@media (max-width: 1200px) {
+  .charactersSection {
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 600px) {
+  .charactersSection {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 20px;
+  }
+}
+
+.characterCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.clickableCard {
+  cursor: pointer;
+}
+
+.characterCard:hover {
+  transform: scale(1.05);
+}
+
+.characterImage {
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  margin-bottom: 8px;
+}
+
+.characterInfo {
+  text-align: center;
+  color: #4a2e1a;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.characterName {
+  font-family: "Lower Pixel", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 33px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+.characterRole {
+  font-family: "Lower Pixel", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 33px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+/* Popup Modal Styles */
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.popupContent {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: scaleIn 0.2s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.popupImage {
+  max-width: 100%;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.closeButton {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  transition: background-color 0.2s;
+  z-index: 1001;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+@media (max-width: 600px) {
+  .popupContent {
+    max-width: 95%;
+  }
+  
+  .closeButton {
+    top: -35px;
+    width: 28px;
+    height: 28px;
+    font-size: 20px;
+  }
+}
+
