@@ -93,6 +93,7 @@
 }
 
 .charactersSection {
+  margin-top: 80px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -103,7 +104,7 @@
 
 .characterRow {
   display: flex;
-  gap: 30px;
+  gap: 80px;
   justify-content: flex-start;
   align-items: flex-start;
 }
@@ -137,7 +138,7 @@
   align-items: center;
   transition: transform 0.2s;
   flex: 0 0 auto;
-  min-width: 100px;
+  width: 125px;
 }
 
 .clickableCard {
@@ -150,6 +151,7 @@
 
 .characterImage {
   width: 70%;
+  max-width: 125px;
   height: auto;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
