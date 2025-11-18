@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 const characters = [
@@ -26,6 +27,15 @@ export default function AboutPage() {
 
   return (
     <div className={styles.aboutContainer}>
+      {/* Fixed Home Button */}
+      <Link href="/" className={styles.homeButton}>
+        <img
+          src="/assets/home_button/home_stamp.png"
+          alt="Return Home"
+          className={styles.homeButtonImage}
+        />
+      </Link>
+
       {/* Main content wrapper */}
       <div className={styles.contentWrapper}>
         {/* Left panel - About card SVG */}
@@ -39,23 +49,103 @@ export default function AboutPage() {
         
         {/* Right section - Character grid */}
         <div className={styles.charactersSection}>
-          {characters.map((character) => (
-            <div 
-              key={character.name} 
-              className={`${styles.characterCard} ${character.name === "Fiona" ? styles.clickableCard : ""}`}
-              onClick={character.name === "Fiona" ? handleFionaClick : undefined}
-            >
-              <img
-                src={character.image}
-                alt={character.name}
-                className={styles.characterImage}
-              />
-              <div className={styles.characterInfo}>
-                <div className={styles.characterName}>{character.name}:</div>
-                <div className={styles.characterRole}>{character.role}</div>
+          {/* Row 1: Melody and Gia */}
+          <div className={styles.characterRow}>
+            {characters.filter(c => c.name === "Melody" || c.name === "Gia").map((character) => (
+              <div 
+                key={character.name} 
+                className={`${styles.characterCard} ${character.name === "Fiona" ? styles.clickableCard : ""}`}
+                onClick={character.name === "Fiona" ? handleFionaClick : undefined}
+              >
+                <img
+                  src={character.image}
+                  alt={character.name}
+                  className={styles.characterImage}
+                />
+                <div className={styles.characterInfo}>
+                  <div className={styles.characterName}>{character.name}:</div>
+                  <div className={styles.characterRole}>{character.role}</div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          
+          {/* Row 2: Gordon, Ziana, and Sam */}
+          <div className={styles.characterRow}>
+            {characters.filter(c => c.name === "Gordon" || c.name === "Ziana" || c.name === "Sam").map((character) => (
+              <div 
+                key={character.name} 
+                className={`${styles.characterCard} ${character.name === "Fiona" ? styles.clickableCard : ""}`}
+                onClick={character.name === "Fiona" ? handleFionaClick : undefined}
+              >
+                <img
+                  src={character.image}
+                  alt={character.name}
+                  className={styles.characterImage}
+                />
+                <div className={styles.characterInfo}>
+                  <div className={styles.characterName}>{character.name}:</div>
+                  <div className={styles.characterRole}>{character.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          {/* Row 3: Fiona and Zara */}
+          <div className={styles.characterRow}>
+            {characters.filter(c => c.name === "Fiona" || c.name === "Zara").map((character) => (
+              <div 
+                key={character.name} 
+                className={`${styles.characterCard} ${character.name === "Fiona" ? styles.clickableCard : ""}`}
+                onClick={character.name === "Fiona" ? handleFionaClick : undefined}
+              >
+                <img
+                  src={character.image}
+                  alt={character.name}
+                  className={styles.characterImage}
+                />
+                <div className={styles.characterInfo}>
+                  <div className={styles.characterName}>{character.name}:</div>
+                  <div className={styles.characterRole}>{character.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Contact Info Section */}
+      <div className={styles.contactInfoSection}>
+        <img
+          src="/assets/contact_info/Group%2096%20(1).png"
+          alt="Contact Info"
+          className={styles.contactInfoImage}
+        />
+        <div className={styles.contactInfoOverlay}>
+          <div className={styles.contactLinks}>
+            <a href="https://www.instagram.com/pent.up.project/" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+              Instagram
+            </a>
+            <span className={styles.contactSeparator}> • </span>
+            <a href="https://github.com/ziana-sundrani/pent_up" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+              GitHub
+            </a>
+            <span className={styles.contactSeparator}> • </span>
+            <a href="https://www.linkedin.com/company/pennspark/" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+              LinkedIn
+            </a>
+            <span className={styles.contactSeparator}> • </span>
+            <a href="https://pennspark.substack.com/" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+              Newsletter
+            </a>
+            <span className={styles.contactSeparator}> • </span>
+            <a href="https://pennclubs.com/club/penn-spark/" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+              Penn Clubs
+            </a>
+          </div>
+          <div className={styles.contactEmail}>
+            Contact Us: <a href="mailto:upennspark@gmail.com" className={styles.contactLink}>upennspark@gmail.com</a>
+          </div>
         </div>
       </div>
 
@@ -63,14 +153,20 @@ export default function AboutPage() {
       {isFionaPopupOpen && (
         <div className={styles.popupOverlay} onClick={handleClosePopup}>
           <div className={styles.popupContent} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.closeButton} onClick={handleClosePopup}>
-              ×
-            </button>
-            <img
-              src="/assets/about_fiona_popup/Pop-up%20about.svg"
-              alt="Fiona Popup"
-              className={styles.popupImage}
-            />
+            <div className={styles.popupImageContainer}>
+              <button className={styles.exitButton} onClick={handleClosePopup}>
+                <img
+                  src="/assets/exit_button/exit button.png"
+                  alt="Close"
+                  className={styles.exitButtonImage}
+                />
+              </button>
+              <img
+                src="/assets/about_fiona_popup/Pop-up%20about.svg"
+                alt="Fiona Popup"
+                className={styles.popupImage}
+              />
+            </div>
           </div>
         </div>
       )}
