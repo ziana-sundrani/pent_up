@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
+import EmotionRegistry from "@/lib/emotion-cache";
 
 const theme = createTheme({
 	palette: {
@@ -13,11 +13,11 @@ const theme = createTheme({
 
 export function AppProviders({ children }: { children: React.ReactNode }) {
 	return (
-		<AppRouterCacheProvider>
+		<EmotionRegistry>
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
 				{children}
 			</ThemeProvider>
-		</AppRouterCacheProvider>
+		</EmotionRegistry>
 	);
 }
