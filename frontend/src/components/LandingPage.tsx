@@ -23,7 +23,7 @@ export function LandingPage({ onAddClick }: { onAddClick?: () => void }) {
 			{/* Envelopes Container */}
 			<div className={styles.envelopesContainer}>
 				<img 
-					src="/envelopes.png" 
+					src="/assets/envelopes.png" 
 					alt="Envelopes" 
 					className={styles.envelopesImage}
 				/>
@@ -36,7 +36,7 @@ export function LandingPage({ onAddClick }: { onAddClick?: () => void }) {
 				aria-label="Add message"
 			>
 				<img 
-					src="/add.png" 
+					src="/assets/add.png" 
 					alt="Add" 
 					className={styles.addButtonImage}
 				/>

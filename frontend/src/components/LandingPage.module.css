@@ -18,7 +18,7 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-image: url("/paper.jpg");
+	background-image: url("/assets/paper.jpg");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -59,7 +59,7 @@
 	max-width: 1000px;
 	height: 950px;
 	max-height: 950px;
-	background-image: url("/orange_ellipse.png");
+	background-image: url("/assets/orange_ellipse.png");
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
